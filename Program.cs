@@ -1,8 +1,9 @@
 ﻿//Author: Michael Markus Wierlemann
 //Year: 2021
-//Last change: 03/07/2021
+//Last change: 05/07/2021
 using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.IO;
 
 namespace Avg_grade
@@ -12,7 +13,7 @@ namespace Avg_grade
         static void Main(string[] args)
         {
             while(true){
-                string workingDirectory = @"C:\Users\micaw\Desktop\Relevant\Programmieren\C#\Eigene Ideen\Avg_grade\gradeData";
+                string workingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Avg_grade";
                 Console.WriteLine("Select: \n");
                 Console.WriteLine("1: Add grade");
                 Console.WriteLine("2: Remove grade");
@@ -32,6 +33,9 @@ namespace Avg_grade
                         }
                         else{
                             fileExists = false;
+                            Directory.CreateDirectory(workingDirectory);
+                            FileStream filestream = File.Create(dataTxt);
+                            filestream.Close();
                             avgGrade = new AverageGradeClass();                      
                         }
                         Console.Write("Module name: ");
@@ -65,7 +69,9 @@ namespace Avg_grade
                                     Console.WriteLine(counter.ToString() + ": " + grade.Module);
                                     counter++;
                                 }
+                                Console.WriteLine("");
                                 string toDeleteString = Console.ReadLine();
+                                Console.WriteLine("");
                                 if(Int32.TryParse(toDeleteString, out int toDelete) && toDelete >= 1 && toDelete <= avgGrade.GradeList.Count){
                                     for(int i = 0; i <= avgGrade.GradeList.Count; i++){
                                         if(toDelete == i + 1){
