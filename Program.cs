@@ -1,9 +1,8 @@
 ﻿//Author: Michael Markus Wierlemann
 //Year: 2021
-//Last change: 05/07/2021
+//Last change: 07/07/2021
 using System;
 using System.Collections.Generic;
-using System.Windows;
 using System.IO;
 
 namespace Avg_grade
